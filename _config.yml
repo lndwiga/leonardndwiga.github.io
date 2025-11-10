@@ -1,0 +1,36 @@
+title: "Leonard Ndwiga"
+description: "Bioinformatics • Genomics • Public Health"
+baseurl: ""
+url: "https://leonardndwiga.github.io"
+
+theme: minimal-mistakes-jekyll
+
+markdown: kramdown
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-include-cache
+
+locale: "en"
+
+author:
+  name: "Leonard Ndwiga"
+  avatar: "/assets/profile.jpg"
+  bio: "Bioinformatics Scientist | Genomics | Public Health Surveillance"
+  location: "Glasgow, UK"
+  email: "leonmarigi@gmail.com"
+  github: "lndwiga"
+  linkedin: "lndwiga"
+
+nav:
+  - title: "About"
+    url: "/"
+  - title: "CV"
+    url: "/cv/"
+  - title: "Publications"
+    url: "/publications/"
+  - title: "Talks & Training"
+    url: "/talks/"
+  - title: "Contact"
+    url: "/#contact"
