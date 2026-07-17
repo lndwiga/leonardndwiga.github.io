@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leonard Ndwiga — Computational Biologist</title>
+<meta name="description" content="Portfolio of Leonard Ndwiga, computational biologist specialising in multi-omics, pathogen genomics and infectious disease surveillance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F1F4EF;
+    --paper-2:#E7ECE4;
+    --panel:#FBFCFA;
+    --ink:#16232E;
+    --ink-soft:#4B5A61;
+    --ink-faint:#8A9290;
+    --teal:#1F7A5C;
+    --teal-soft:#E4EFE9;
+    --coral:#B84A3C;
+    --coral-soft:#F3E6E2;
+    --line:#CBD3C6;
+    --radius:2px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    background-image:
+      radial-gradient(circle, rgba(22,35,46,0.06) 1px, transparent 1px);
+    background-size:22px 22px;
+    color:var(--ink);
+    font-family:'Newsreader', Georgia, serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:var(--teal);}
+  a:focus-visible, button:focus-visible, .tree-node:focus-visible{
+    outline:2px solid var(--coral);
+    outline-offset:3px;
+  }
+
+  .mono{font-family:'JetBrains Mono', 'SFMono-Regular', monospace;}
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.site-nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(241,244,239,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:920px;
+    margin:0 auto;
+    padding:14px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+  }
+  .nav-name{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:0.02em;
+    text-decoration:none;
+    color:var(--ink);
+  }
+  .nav-links{
+    display:flex;
+    gap:20px;
+    list-style:none;
+    margin:0; padding:0;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+  }
+  .nav-links a{
+    color:var(--ink-soft);
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+  }
+  .nav-links a:hover{ color:var(--teal); border-bottom-color:var(--teal); }
+  @media (max-width:600px){
+    .nav-links{ gap:12px; }
+    .nav-links li:nth-child(n+4){ display:none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:76px 0 48px;
+    border-bottom:1px solid var(--line);
+  }
+  .trace{
+    display:flex;
+    gap:6px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:22px;
+    flex-wrap:wrap;
+  }
+  .trace span{
+    opacity:0;
+    animation:reveal 0.4s ease forwards;
+  }
+  .trace .A{color:var(--teal);}
+  .trace .T{color:var(--coral);}
+  .trace .G{color:var(--ink);}
+  .trace .C{color:#3A6FA8;}
+  @keyframes reveal{
+    from{opacity:0; transform:translateY(4px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  h1.name{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    font-size:clamp(32px, 6vw, 52px);
+    letter-spacing:-0.01em;
+    margin:0 0 6px;
+    line-height:1.05;
+  }
+  .title-line{
+    font-family:'JetBrains Mono', monospace;
+    font-size:14px;
+    color:var(--ink-soft);
+    margin:0 0 30px;
+  }
+  .title-line .sep{ color:var(--ink-faint); margin:0 8px; }
+
+  .definition{
+    display:grid;
+    grid-template-columns:130px 1fr;
+    gap:4px 18px;
+    max-width:680px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    border-top:1px dashed var(--line);
+    border-bottom:1px dashed var(--line);
+    padding:14px 0;
+    margin-bottom:26px;
+  }
+  .definition dt{ color:var(--ink-faint); }
+  .definition dd{ margin:0; color:var(--ink); }
+
+  .lede{
+    font-size:19px;
+    max-width:640px;
+    color:var(--ink);
+  }
+
+  .contact-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 22px;
+    margin-top:28px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+  }
+  .contact-row a{ text-decoration:none; color:var(--ink-soft); border-bottom:1px solid var(--line); }
+  .contact-row a:hover{ color:var(--teal); border-bottom-color:var(--teal); }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:56px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+
+  .locus{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.06em;
+    color:var(--ink-faint);
+    text-transform:uppercase;
+    margin-bottom:8px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .locus b{ color:var(--teal); font-weight:600; }
+
+  h2.section-title{
+    font-family:'Newsreader', serif;
+    font-weight:600;
+    font-style:italic;
+    font-size:30px;
+    margin:0 0 24px;
+    color:var(--ink);
+  }
+
+  /* profile */
+  .profile-text{ max-width:680px; font-size:18px; }
+
+  /* career tree */
+  .tree-figure{ margin:0 0 30px; }
+  .tree-svg{ width:100%; height:auto; display:block; }
+  .tree-path{ fill:none; stroke:var(--ink); stroke-width:2; }
+  .tree-path.branch{ stroke:var(--teal); }
+  .tree-path.dash{ stroke-dasharray:3 5; }
+  .tree-node circle{ fill:var(--panel); stroke:var(--ink); stroke-width:2; }
+  .tree-node.branch circle{ stroke:var(--teal); }
+  .tree-label{ font-family:'JetBrains Mono', monospace; font-size:10px; fill:var(--ink-faint); }
+
+  .role-list{
+    list-style:none;
+    margin:0; padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+  }
+  .role{
+    display:grid;
+    grid-template-columns:16px 1fr;
+    gap:14px;
+    align-items:start;
+  }
+  .role-dot{
+    width:11px; height:11px;
+    border-radius:50%;
+    background:var(--teal);
+    margin-top:7px;
+    flex-shrink:0;
+  }
+  .role.trunk .role-dot{ background:var(--ink); }
+  .role-org{ font-weight:600; }
+  .role-meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--ink-faint);
+    margin:2px 0 6px;
+  }
+  .role-desc{ color:var(--ink-soft); font-size:16px; margin:0; }
+
+  /* skills */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:28px 32px;
+  }
+  .skill-group h3{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    color:var(--coral);
+    margin:0 0 12px;
+  }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    padding:6px 10px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    color:var(--ink-soft);
+  }
+
+  /* achievements */
+  .ach-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:20px;
+  }
+  .ach-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    padding:20px 22px;
+    border-radius:var(--radius);
+  }
+  .ach-card h3{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    color:var(--teal);
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    margin:0 0 10px;
+  }
+  .ach-card p{ margin:0; color:var(--ink-soft); font-size:15.5px; }
+
+  /* publications */
+  .pub-list{ list-style:none; margin:0; padding:0; counter-reset:pub; }
+  .pub-list li{
+    counter-increment:pub;
+    padding:16px 0;
+    border-top:1px dashed var(--line);
+    display:grid;
+    grid-template-columns:34px 1fr;
+    gap:14px;
+  }
+  .pub-list li:last-child{ border-bottom:1px dashed var(--line); }
+  .pub-list li::before{
+    content:"P"counter(pub);
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--ink-faint);
+  }
+  .pub-title{ margin:0 0 4px; color:var(--ink); }
+  .pub-meta{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--ink-faint); }
+  .pub-tag{
+    display:inline-block;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    color:var(--coral);
+    border:1px solid var(--coral-soft);
+    background:var(--coral-soft);
+    padding:1px 6px;
+    border-radius:var(--radius);
+    margin-left:8px;
+  }
+
+  /* grants */
+  .grant-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:20px; }
+  .grant-card{ border-left:3px solid var(--teal); padding:4px 0 4px 18px; }
+  .grant-amount{
+    font-family:'JetBrains Mono', monospace;
+    font-size:22px;
+    font-weight:700;
+    color:var(--teal);
+    display:block;
+    margin-bottom:4px;
+  }
+  .grant-card h3{ margin:0 0 6px; font-size:17px; }
+  .grant-card p{ margin:2px 0; color:var(--ink-soft); font-size:14.5px; }
+  .grant-meta{ font-family:'JetBrains Mono', monospace; font-size:12px !important; color:var(--ink-faint) !important; }
+
+  /* training */
+  .training-list{ list-style:none; margin:0; padding:0; }
+  .training-list li{
+    padding:14px 0;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:8px 16px;
+    align-items:baseline;
+  }
+  .training-list li:last-child{ border-bottom:1px solid var(--line); }
+  .training-role{ font-weight:600; }
+  .training-desc{ grid-column:1 / -1; color:var(--ink-soft); font-size:15px; margin:2px 0 0; }
+  .training-date{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--ink-faint);
+    white-space:nowrap;
+  }
+  .badge-scheduled{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    color:var(--coral);
+    border:1px solid var(--coral);
+    padding:1px 6px;
+    border-radius:var(--radius);
+    margin-left:8px;
+  }
+
+  /* education */
+  .edu-list{ list-style:none; margin:0; padding:0; }
+  .edu-list li{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:4px 16px;
+    padding:12px 0;
+    border-top:1px dashed var(--line);
+  }
+  .edu-list li:last-child{ border-bottom:1px dashed var(--line); }
+  .edu-degree{ font-weight:600; }
+  .edu-school{ grid-column:1/-1; font-size:14.5px; color:var(--ink-soft); }
+  .edu-date{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--ink-faint); }
+
+  /* footer */
+  footer{
+    padding:44px 0 60px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-faint);
+  }
+  footer a{ color:var(--ink-soft); }
+
+  ::selection{ background:var(--teal-soft); color:var(--ink); }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-name mono">L. NDWIGA</a>
+    <ul class="nav-links">
+      <li><a href="#profile">Profile</a></li>
+      <li><a href="#career">Career</a></li>
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<div id="top" class="wrap">
+
+  <section class="hero">
+    <div class="trace mono" aria-hidden="true">
+      <span class="A" style="animation-delay:.02s">A</span><span class="T" style="animation-delay:.06s">T</span><span class="G" style="animation-delay:.10s">G</span><span class="C" style="animation-delay:.14s">C</span><span class="A" style="animation-delay:.18s">A</span><span class="A" style="animation-delay:.22s">A</span><span class="T" style="animation-delay:.26s">T</span><span class="C" style="animation-delay:.30s">C</span><span class="G" style="animation-delay:.34s">G</span><span class="A" style="animation-delay:.38s">A</span><span class="T" style="animation-delay:.42s">T</span><span class="C" style="animation-delay:.46s">C</span><span class="G" style="animation-delay:.50s">G</span><span class="A" style="animation-delay:.54s">A</span>
+    </div>
+
+    <h1 class="name">LEONARD&nbsp;NDWIGA</h1>
+    <p class="title-line">Computational Biologist <span class="sep">/</span> Multi-omics &amp; Pathogen Genomics <span class="sep">/</span> Glasgow, UK</p>
+
+    <dl class="definition">
+      <dt>LOCUS</dt><dd>NDWIGA_L &nbsp;8+ YRS &nbsp;linear &nbsp;RESEARCHER</dd>
+      <dt>ORGANISM</dt><dd>Homo sapiens; computational biologist</dd>
+      <dt>SOURCE</dt><dd>University of Glasgow — Centre for Virus Research</dd>
+    </dl>
+
+    <p class="lede">Computational biologist with over eight years of experience applying multi-omics approaches to investigate host&ndash;microbe interactions and infectious diseases using high-throughput sequencing data from clinical samples — bridging experimental genomics and computational biology to turn complex clinical sequencing datasets into biological discovery.</p>
+
+    <div class="contact-row">
+      <a href="mailto:leonmarigi@gmail.com">leonmarigi@gmail.com</a>
+      <a href="tel:+447425237540">+44 7425 237540</a>
+      <a href="https://linkedin.com/in/lndwiga">LinkedIn ↗</a>
+      <a href="https://github.com/lndwiga">GitHub ↗</a>
+    </div>
+  </section>
+
+  <section id="profile">
+    <p class="locus"><b>LOCUS</b> PROFILE &nbsp;·&nbsp; scientific summary</p>
+    <h2 class="section-title">What I do</h2>
+    <p class="profile-text">My work spans genomics, transcriptomics, metatranscriptomics and pathogen genomics. I develop reproducible computational workflows, integrate diverse omics datasets, and translate sequencing data into biological discoveries that advance our understanding of disease mechanisms, biomarker discovery and precision medicine. I thrive in collaborative, multidisciplinary research environments where computational innovation drives biological and clinical discovery.</p>
+  </section>
+
+  <section id="career">
+    <p class="locus"><b>LOCUS</b> CAREER &nbsp;·&nbsp; 2018 — present</p>
+    <h2 class="section-title">Career phylogeny</h2>
+
+    <figure class="tree-figure">
+      <svg class="tree-svg" viewBox="0 0 900 190" role="img" aria-labelledby="treeTitle treeDesc">
+        <title id="treeTitle">Career timeline drawn as a branching lineage</title>
+        <desc id="treeDesc">A trunk lineage from Research Fellow through Head of Sequencing Facility, branching in 2023 into a parallel Bioinformatics Consultant/Trainer role while the main lineage continues into the current Researcher position at the University of Glasgow.</desc>
+
+        <!-- trunk: research fellow -> head of facility -->
+        <path class="tree-path" d="M 40 140 L 300 140" />
+        <!-- trunk: head of facility -> split -->
+        <path class="tree-path" d="M 300 140 L 430 140" />
+        <!-- branch up: consultant/trainer -->
+        <path class="tree-path branch" d="M 430 140 C 470 140, 470 60, 520 60 L 830 60" />
+        <!-- trunk continues: -> glasgow researcher -->
+        <path class="tree-path" d="M 430 140 L 560 140 L 830 140" />
+        <!-- ongoing dashes -->
+        <path class="tree-path dash" d="M 830 60 L 870 60" />
+        <path class="tree-path dash" d="M 830 140 L 870 140" />
+
+        <g class="tree-node"><circle cx="40" cy="140" r="5"/></g>
+        <g class="tree-node"><circle cx="300" cy="140" r="5"/></g>
+        <g class="tree-node"><circle cx="430" cy="140" r="5"/></g>
+        <g class="tree-node branch"><circle cx="520" cy="60" r="5"/></g>
+        <g class="tree-node"><circle cx="560" cy="140" r="5"/></g>
+
+        <text class="tree-label" x="40" y="122">2018</text>
+        <text class="tree-label" x="300" y="122">2021</text>
+        <text class="tree-label" x="430" y="122">2023</text>
+        <text class="tree-label" x="560" y="122">2024</text>
+        <text class="tree-label" x="838" y="45">ongoing</text>
+        <text class="tree-label" x="838" y="125">ongoing</text>
+      </svg>
+    </figure>
+
+    <ul class="role-list">
+      <li class="role trunk">
+        <span class="role-dot"></span>
+        <div>
+          <div class="role-org">Researcher — University of Glasgow, Centre for Virus Research</div>
+          <div class="role-meta">27 Feb 2024 — Present · Glasgow, UK</div>
+          <p class="role-desc">Lead computational analysis of bulk transcriptomic and metatranscriptomic datasets from clinical respiratory samples, investigating transcriptional responses and microbial signatures in respiratory disease. Develop and optimise reproducible workflows (Python, R, Bash, Snakemake, HPC) for transcriptomic, metatranscriptomic and pathogen genomic analyses across Illumina and Oxford Nanopore data, including quality assessment, differential expression, taxonomic profiling and pathway enrichment. Optimise analytical strategies for low-input, partially degraded RNA from clinical samples.</p>
+        </div>
+      </li>
+      <li class="role">
+        <span class="role-dot"></span>
+        <div>
+          <div class="role-org">Bioinformatics Consultant / Trainer — Wellcome Connecting Science (UK), Africa CDC, ASLM &amp; Partners</div>
+          <div class="role-meta">2023 — Present · Pan-African</div>
+          <p class="role-desc">Lead the development and delivery of advanced genomics and bioinformatics training for researchers, clinicians and public health scientists across more than 15 African countries. Build reproducible workflows for pathogen genomics, metagenomics and transcriptomics, and provide technical leadership in HPC, workflow development and NGS analysis to strengthen national genomic surveillance capacity.</p>
+        </div>
+      </li>
+      <li class="role trunk">
+        <span class="role-dot"></span>
+        <div>
+          <div class="role-org">Head of Sequencing Facility — KEMRI-Wellcome Trust Research Programme</div>
+          <div class="role-meta">1 Oct 2021 — 16 Feb 2024 · Kenya</div>
+          <p class="role-desc">Led the sequencing facility and directed genomics and bioinformatics operations supporting national pathogen genomic surveillance, generating genomic evidence for public health policy and outbreak response. Managed multidisciplinary teams across laboratory genomics, bioinformatics and public health; designed reproducible computational pipelines for viral, bacterial and parasitic genomics.</p>
+        </div>
+      </li>
+      <li class="role trunk">
+        <span class="role-dot"></span>
+        <div>
+          <div class="role-org">Research Fellow — KEMRI-Wellcome Trust Research Programme</div>
+          <div class="role-meta">8 Oct 2018 — 30 Sep 2021 · Kenya</div>
+          <p class="role-desc">Coordinated genomics components of multi-site malaria research programmes, integrating laboratory workflows with bioinformatics analyses to support drug resistance surveillance. Applied statistical genomics to inform clinical and public health research, and presented findings to national stakeholders shaping research priorities and policy.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section id="expertise">
+    <p class="locus"><b>LOCUS</b> EXPERTISE &nbsp;·&nbsp; technical skills</p>
+    <h2 class="section-title">Toolkit</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Computational Biology &amp; Omics</h3>
+        <div class="chip-row">
+          <span class="chip">Transcriptomics</span>
+          <span class="chip">Metatranscriptomics</span>
+          <span class="chip">Pathogen &amp; microbial genomics</span>
+          <span class="chip">DGE &amp; pathway enrichment (GO, KEGG, GSEA)</span>
+          <span class="chip">Taxonomic profiling</span>
+          <span class="chip">Comparative genomics &amp; phylogenetics</span>
+          <span class="chip">Multi-omics integration</span>
+          <span class="chip">Biomarker discovery</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Scientific Computing</h3>
+        <div class="chip-row">
+          <span class="chip">Python</span>
+          <span class="chip">R</span>
+          <span class="chip">Bash</span>
+          <span class="chip">Snakemake</span>
+          <span class="chip">Linux / HPC</span>
+          <span class="chip">Git</span>
+          <span class="chip">Workflow automation</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>NGS &amp; Genomic Analysis</h3>
+        <div class="chip-row">
+          <span class="chip">Illumina</span>
+          <span class="chip">Oxford Nanopore</span>
+          <span class="chip">WGS, amplicon &amp; RNA-seq</span>
+          <span class="chip">Genome assembly</span>
+          <span class="chip">Variant calling</span>
+          <span class="chip">Sequencing QC</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Experimental Genomics</h3>
+        <div class="chip-row">
+          <span class="chip">DNA/RNA extraction</span>
+          <span class="chip">Qubit / NanoDrop / TapeStation</span>
+          <span class="chip">PCR, RT-PCR, qPCR</span>
+          <span class="chip">Library preparation</span>
+          <span class="chip">Lab QA</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Leadership &amp; Collaboration</h3>
+        <div class="chip-row">
+          <span class="chip">Experimental design</span>
+          <span class="chip">Scientific writing</span>
+          <span class="chip">Grant writing</span>
+          <span class="chip">Mentorship &amp; capacity building</span>
+          <span class="chip">Stakeholder engagement</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="achievements">
+    <p class="locus"><b>LOCUS</b> IMPACT &nbsp;·&nbsp; selected achievements</p>
+    <h2 class="section-title">Highlights</h2>
+    <div class="ach-grid">
+      <div class="ach-card">
+        <h3>Multi-omics &amp; computational biology</h3>
+        <p>Led the development of computational workflows integrating genomics, transcriptomics and metatranscriptomics to investigate host&ndash;microbe interactions using complex clinical sequencing datasets.</p>
+      </div>
+      <div class="ach-card">
+        <h3>Computational method development</h3>
+        <p>Developed reproducible and scalable bioinformatics pipelines using Python, R, Bash, Snakemake and HPC environments for genomics, transcriptomics, metagenomics and pathogen surveillance.</p>
+      </div>
+      <div class="ach-card">
+        <h3>Scientific leadership &amp; public health impact</h3>
+        <p>Directed sequencing and bioinformatics operations supporting Kenya's national SARS-CoV-2 genomic surveillance programme, leading multidisciplinary teams and delivering genomic evidence for public health decision-making.</p>
+      </div>
+      <div class="ach-card">
+        <h3>Research funding &amp; capacity building</h3>
+        <p>Secured competitive research funding as Principal Investigator (NIHR/RSTMH) and continues to deliver genomics and bioinformatics training across 15+ African countries with Wellcome Connecting Science, Africa CDC and international partners.</p>
+      </div>
+      <div class="ach-card">
+        <h3>Scientific communication</h3>
+        <p>Authored peer-reviewed publications in pathogen genomics, transcriptomics, malaria genomics and infectious disease surveillance, contributing to multidisciplinary collaborations across academia, healthcare and industry.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <p class="locus"><b>LOCUS</b> OUTPUT &nbsp;·&nbsp; peer-reviewed publications</p>
+    <h2 class="section-title">Publications</h2>
+    <ol class="pub-list">
+      <li>
+        <div>
+          <p class="pub-title">Epidemiology of COVID-19 infections on routine polymerase chain reaction (PCR) and serology testing in Coastal Kenya<span class="pub-tag">equal contribution</span></p>
+          <p class="pub-meta">James Nyagwange*, Ndwiga L.* et al. — Feb 2022</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <p class="pub-title">A review of the frequencies of Plasmodium falciparum Kelch 13 artemisinin resistance mutations in Africa</p>
+          <p class="pub-meta">Ndwiga L. et al. — 2021</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <p class="pub-title">The Plasmodium falciparum Rh5 invasion protein complex reveals an excess of rare variant mutations</p>
+          <p class="pub-meta">Ndwiga L. et al. — 2021</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <p class="pub-title">Targeted amplicon deep sequencing of ama1 and mdr1 to track within-host P. falciparum diversity throughout treatment in a clinical drug trial<span class="pub-tag">equal contribution</span></p>
+          <p class="pub-meta">Kevin Wamae*, Leonard Ndwiga* et al. — 2022</p>
+        </div>
+      </li>
+    </ol>
+    <p style="margin-top:18px;"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Leonard+Ndwiga" class="mono" style="font-size:13px;">Full list on PubMed ↗</a></p>
+  </section>
+
+  <section id="grants">
+    <p class="locus"><b>LOCUS</b> FUNDING &nbsp;·&nbsp; research grants</p>
+    <h2 class="section-title">Grants</h2>
+    <div class="grant-grid">
+      <div class="grant-card">
+        <span class="grant-amount">£5,000</span>
+        <h3>Genotyping novel Plasmodium falciparum drug resistance markers in samples obtained from drug efficacy studies in Kenya</h3>
+        <p>Royal Society of Tropical Medicine and Hygiene (RSTMH) · NIHR Small Grant · Principal Investigator</p>
+        <p class="grant-meta">Sep 2019 — May 2021</p>
+      </div>
+      <div class="grant-card">
+        <span class="grant-amount">£4,100</span>
+        <h3>Molecular analysis of antimalarial resistance markers in parasite samples obtained from children recruited into a drug efficacy trial in Kwale, Kenya, 2013</h3>
+        <p>Initiative to Develop African Research Leaders (IDeAL)</p>
+        <p class="grant-meta">Sep 2016 — Aug 2017</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="training">
+    <p class="locus"><b>LOCUS</b> TRAINING &nbsp;·&nbsp; conferences &amp; capacity building</p>
+    <h2 class="section-title">Training &amp; conferences</h2>
+    <ul class="training-list">
+      <li>
+        <span class="training-role">Trainer, Wellcome Connecting Science <span class="badge-scheduled">scheduled</span></span>
+        <span class="training-date">Côte d'Ivoire · Sep 2026</span>
+        <p class="training-desc">Scheduled to deliver genomics and clinical microbiology training to African research and public health scientists.</p>
+      </li>
+      <li>
+        <span class="training-role">Trainer, Wellcome Connecting Science</span>
+        <span class="training-date">The Gambia, South Africa · 2024–2025</span>
+        <p class="training-desc">Delivered genomics and clinical microbiology training to African research and public health scientists.</p>
+      </li>
+      <li>
+        <span class="training-role">Trainer, Pan-African Bioinformatics Programs</span>
+        <span class="training-date">Africa CDC / CZI · 2023–2025</span>
+        <p class="training-desc">Delivered multi-country training in genomics and outbreak response workflows.</p>
+      </li>
+      <li>
+        <span class="training-role">Lead Trainer, Genome Analysis</span>
+        <span class="training-date">Kenya Institute of Primate Research · 8-month virtual programme</span>
+        <p class="training-desc">Designed and delivered structured training for researchers analysing whole genome sequencing data.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="education">
+    <p class="locus"><b>LOCUS</b> EDUCATION</p>
+    <h2 class="section-title">Education</h2>
+    <ul class="edu-list">
+      <li>
+        <span class="edu-degree">MSc Bioinformatics</span>
+        <span class="edu-date">Dec 2018</span>
+        <span class="edu-school">University of Nairobi, Kenya</span>
+      </li>
+      <li>
+        <span class="edu-degree">BSc Biochemistry</span>
+        <span class="edu-date">Dec 2014</span>
+        <span class="edu-school">University of Nairobi, Kenya</span>
+      </li>
+      <li>
+        <span class="edu-degree">Certificate, Project Management</span>
+        <span class="edu-date">Aug 2025</span>
+        <span class="edu-school">Howard University, USA</span>
+      </li>
+      <li>
+        <span class="edu-degree">Certificate, Project Management in Global Health</span>
+        <span class="edu-date">Sep 2023</span>
+        <span class="edu-school">University of Washington, USA</span>
+      </li>
+    </ul>
+  </section>
+
+  <footer id="contact">
+    <p>Leonard Ndwiga · Glasgow, United Kingdom<br>
+    <a href="mailto:leonmarigi@gmail.com">leonmarigi@gmail.com</a> · <a href="tel:+447425237540">+44 7425 237540</a><br>
+    <a href="https://linkedin.com/in/lndwiga">LinkedIn</a> · <a href="https://github.com/lndwiga">GitHub</a></p>
+  </footer>
+
+</div>
+
+</body>
+</html>
